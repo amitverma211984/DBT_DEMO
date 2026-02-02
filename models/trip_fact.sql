@@ -1,0 +1,18 @@
+WITH TRIPS AS (
+
+    SELECT 
+    ride_id,
+    rideable_type,
+    TO_TIMESTAMP(STARTED_AT) AS TRIP_DATE,
+    start_statio_id AS START_STATION_ID,
+    END_STATION_ID,
+    MEMBER_CSUAL AS MEMBER_CASUAL,
+    TIMESTAMPDIFF(SECOND, TO_TIMESTAMP(STARTED_AT),TO_TIMESTAMP(ENDED_AT)) AS TRIP_DURATION_SECOND
+    FROM {{source('demo','bike')}}
+    WHERE RIDE_ID != 'ride_id'
+
+)
+
+SELECT 
+*
+FROM TRIPS
