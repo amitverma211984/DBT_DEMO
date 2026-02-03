@@ -14,7 +14,7 @@ WITH BIKE AS (
 			REPLACE(END_LNG,'"' ,'') AS END_LNG,
 			REPLACE(MEMBER_CSUAL,'"' ,'') AS MEMBER_CSUAL
             FROM {{ source('demo', 'bike') }}
-       WHERE RIDE_ID != '"bikeid"'
+       WHERE RIDE_ID != '"bikeid"' and STARTED_AT != '"starttime"' AND STARTED_AT != 'starttime'
 )
 
 SELECT * FROM
